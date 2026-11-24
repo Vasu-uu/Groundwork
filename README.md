@@ -8,9 +8,11 @@ Groundwork extracts pain points tied to verbatim, verified quotes, clusters
 them into themes, and suggests a verdict for each hypothesis. You review every
 verdict at a human checkpoint before it drafts your next interview script.
 
-> Status: work in progress (Stage 2 of 8: transcript parsing, segmentation, sample data).
+> Status: work in progress (Stage 3 of 8: pain-point extraction with quote verification).
 >
-> Try the parser: `python -m scripts.segment --set freelance-invoicing` (from `backend/`).
+> From `backend/`: `python -m scripts.segment --set freelance-invoicing` previews parsing;
+> `python -m scripts.extract --set freelance-invoicing` runs extraction with your model and
+> prints the "verified quotes: X/Y" metric.
 > Sample data is described in [samples/README.md](samples/README.md).
 
 ## Free by design
