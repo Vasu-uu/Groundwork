@@ -33,6 +33,36 @@ Groundwork treats interviews as evidence:
 The model proposes, code decides, the founder approves. See
 [docs/architecture.md](docs/architecture.md).
 
+## Screenshots
+
+Taken in demo mode with the bundled (fictional) sample interviews.
+
+**Home:** sample sets, your studies, and a banner when no model is running.
+
+![Home page](docs/screenshots/home.png)
+
+**Step 1, interviews and hypotheses:** upload or paste transcripts, optionally
+replace speaker names, and state hypotheses. A warning shows below 5 interviews.
+
+![Step 1: interviews and hypotheses](docs/screenshots/1-inputs.png)
+
+**Step 2, evidence:** verified quote counts, and for each hypothesis an AI-suggested
+verdict with supporting and contradicting quotes side by side, each linked to
+its interview and segment, plus what would change the verdict.
+
+![Step 2: evidence](docs/screenshots/2-evidence.png)
+
+**Step 3, the human checkpoint:** accept, change or reject every verdict, remove
+misread quotes and add notes. Step 4 stays locked until you approve.
+
+![Step 3: human checkpoint](docs/screenshots/3-review.png)
+
+**Step 4, next interview:** your approved decisions (with the AI's suggestion
+where you disagreed) and a script that targets what is still uncertain, with
+a purpose and a bias check for every question.
+
+![Step 4: next interview script](docs/screenshots/4-next.png)
+
 ## Free by design
 
 All runtime models are free: an open-weight model through
@@ -147,7 +177,7 @@ All settings come from environment variables; see [`.env.example`](.env.example)
 - [Human judgment](docs/human-judgment.md): where the founder has the last word
 - [Responsible AI](docs/responsible-ai.md): privacy, limitations, bias
 - [AI disclosure](docs/ai-disclosure.md): models used at runtime and in development
-- [Time-saved report](docs/time-saved-report.md): method and template
+- [Time-saved report](docs/time-saved-report.md): measured model workload and an estimate of about 5 to 10 h of synthesis cut to 15 to 30 min of founder time per round of 6 interviews
 - [Sample data](samples/README.md) and [prompts](backend/prompts/README.md)
 
 ## API overview
