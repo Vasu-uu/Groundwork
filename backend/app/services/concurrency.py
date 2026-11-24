@@ -17,10 +17,17 @@ async def map_bounded(fn: Callable[[A], Awaitable[R]], items: Iterable[A], limit
     cancelled and that first exception is raised as-is (not as an ExceptionGroup).
     """
     gate = asyncio.Semaphore(limit)
+    stop = asyncio.Event()
 
     async def run(item: A) -> R:
         async with gate:
-            return await fn(item)
+            if stop.is_set():  # an earlier job failed: do not start new work
+                raise asyncio.CancelledError
+            try:
+                return await fn(item)
+            except Exception:
+                stop.set()
+                raise
 
     try:
         async with asyncio.TaskGroup() as group:

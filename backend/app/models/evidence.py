@@ -40,6 +40,12 @@ class Evidence(BaseModel):
 
     @computed_field  # type: ignore[prop-decorator]
     @property
+    def key(self) -> str:
+        """Stable reference used by the review screen, e.g. to remove this quote."""
+        return f"{self.interview_id}:{self.start}:{self.end}"
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
     def paraphrase(self) -> bool:
         """True when the source is founder notes rather than recorded speech."""
         return self.role is SpeakerRole.NOTE

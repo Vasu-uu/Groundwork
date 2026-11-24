@@ -16,7 +16,7 @@ from __future__ import annotations
 from enum import StrEnum
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
 from app.models.evidence import Evidence, Intensity, PainPoint, RejectedQuote, VerificationStats
 from app.models.hypothesis import Hypothesis
@@ -125,6 +125,7 @@ class HypothesisVerdict(BaseModel):
     related_theme_ids: list[str] = Field(default_factory=list)
     status: Literal["ai_suggestion"] = "ai_suggestion"
 
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def counter_evidence(self) -> list[Evidence]:
         """Devil's advocate view: the strongest evidence against this hypothesis.

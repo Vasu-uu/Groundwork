@@ -18,7 +18,7 @@ class DownProvider(MockProvider):
 
 
 def client_for(provider) -> TestClient:
-    settings = Settings(_env_file=None, llm_provider="mock")
+    settings = Settings(_env_file=None, llm_provider="mock", database_url="sqlite://")
     return TestClient(create_app(settings=settings, provider=provider))
 
 

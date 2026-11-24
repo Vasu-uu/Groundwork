@@ -8,7 +8,8 @@ Groundwork extracts pain points tied to verbatim, verified quotes, clusters
 them into themes, and suggests a verdict for each hypothesis. You review every
 verdict at a human checkpoint before it drafts your next interview script.
 
-> Status: work in progress (Stage 4 of 8: themes and hypothesis verdicts).
+> Status: work in progress (Stage 5 of 8: REST API, decision log, server-enforced human checkpoint).
+> API docs at http://localhost:8000/docs once `uvicorn app.main:app` is running.
 >
 > From `backend/`: `python -m scripts.segment --set freelance-invoicing` previews parsing;
 > `python -m scripts.extract --set ...` runs pain-point extraction ("verified quotes: X/Y");
@@ -36,6 +37,19 @@ python -m scripts.check_llm     # one-shot provider smoke test
 uvicorn app.main:app --reload   # then open http://localhost:8000/api/health
 pytest                          # run the test suite
 ```
+
+## API overview
+
+| Endpoint | Purpose |
+| --- | --- |
+| `POST /api/studies` / `POST /api/studies/from-sample/{set}` | Create a study (blank or from sample data) |
+| `POST /api/studies/{id}/interviews` (multipart) / `.../interviews/text` | Add interviews (txt, md, pdf, docx, or pasted text) |
+| `PUT /api/studies/{id}/hypotheses` | Set the hypotheses to test |
+| `POST /api/studies/{id}/analyze`, `GET .../status` | Run the analysis in the background and poll progress |
+| `PUT /api/studies/{id}/reviews/{hypothesis}` | **Human checkpoint**: approve, change (with reason) or reject each verdict, remove quotes, add notes |
+| `POST /api/studies/{id}/approve` / `.../reopen` | Pass the checkpoint (refused until every verdict is reviewed) or reopen it |
+| `GET /api/studies/{id}/decisions` | Approved decisions; returns `409 checkpoint_required` before approval |
+| `GET /api/studies/{id}/decision-log` | Append-only log of AI suggestions and founder decisions with timestamps |
 
 ## Configuration
 

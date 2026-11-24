@@ -103,7 +103,7 @@ def render_hypotheses(hypotheses: list[Hypothesis]) -> str:
     return "\n".join(f"{h.id}: {h.text}" for h in hypotheses)
 
 
-def _final_stance(claimed: list[Stance], has_sup: bool, has_con: bool) -> Stance:
+def final_stance(claimed: list[Stance], has_sup: bool, has_con: bool) -> Stance:
     """Stance supported by verified quotes. Unbacked claims fall to not_discussed."""
     if has_sup and has_con:
         return Stance.MIXED
@@ -223,7 +223,7 @@ async def assess_interview(
 
     for h in hypotheses:
         a = acc[h.id]
-        stance = _final_stance(a.claimed, bool(a.supporting), bool(a.contradicting))
+        stance = final_stance(a.claimed, bool(a.supporting), bool(a.contradicting))
         strongest_claim = next(
             (s for s in (Stance.MIXED, Stance.SUPPORTS, Stance.CONTRADICTS) if s in a.claimed),
             None,
