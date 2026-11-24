@@ -1,0 +1,48 @@
+{
+  "set": "restaurant-waste",
+  "labelled_by": "Hand-labelled ground truth for the eval harness. Quotes are verbatim substrings of the transcripts.",
+  "pain_points": [
+    {
+      "id": "PP1",
+      "label": "Over-ordering leads to costly food waste",
+      "interviews": ["R-01", "R-03"],
+      "quotes": [
+        {"interview": "R-01", "quote": "I'd guess we throw away 10 to 15 percent of what we buy in a slow week."},
+        {"interview": "R-03", "quote": "Last quarter we threw away about 2,400 euros of vegetables and pork across both sites."}
+      ]
+    },
+    {
+      "id": "PP2",
+      "label": "Supplier minimum orders force over-buying",
+      "interviews": ["R-01", "R-03"],
+      "quotes": [
+        {"interview": "R-01", "quote": "If I only need half of that, I still have to buy 150 euros, so I buy extra and hope."},
+        {"interview": "R-03", "quote": "For the smaller location that's more than a week's worth, so some of it goes to waste."}
+      ]
+    },
+    {
+      "id": "PP3",
+      "label": "Ordering is based on guesswork",
+      "interviews": ["R-01", "R-03"],
+      "quotes": [
+        {"interview": "R-01", "quote": "Gut feeling and last week's numbers on a notepad."},
+        {"interview": "R-03", "quote": "The managers guess, really."}
+      ]
+    },
+    {
+      "id": "PP4",
+      "label": "Daily stock-taking is too much effort",
+      "interviews": ["R-01", "R-02", "R-03"],
+      "quotes": [
+        {"interview": "R-01", "quote": "After a 12-hour service the last thing I want is to count tomatoes on my phone."},
+        {"interview": "R-03", "quote": "It took 30 minutes every night."}
+      ]
+    }
+  ],
+  "verdicts": {
+    "H1": {"verdict": "MIXED", "why": "R-01 and R-03 report significant waste; R-02 reports under 3 percent. Only 3 interviews."},
+    "H2": {"verdict": "INVALIDATED", "why": "All three reject daily manual inventory tracking; R-03 tried and abandoned an app."},
+    "H3": {"verdict": "VALIDATED", "why": "R-01 and R-03 both name supplier minimums as a cause of over-buying; R-02 has no minimums. Small sample: 3 interviews."}
+  },
+  "small_sample": true
+}

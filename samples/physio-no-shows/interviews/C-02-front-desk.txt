@@ -1,0 +1,19 @@
+---
+id: C-02
+participant: Nadia
+persona: Front-desk coordinator at a 5-therapist clinic
+date: 2026-09-17
+---
+
+[00:00:03] Interviewer: What takes most of your time at the front desk?
+[00:00:07] Nadia: Phone calls. Booking, rebooking, reminding. I make about forty reminder calls every afternoon.
+[00:00:20] Interviewer: Do the reminder calls work?
+[00:00:24] Nadia: They help, but people still forget. Or they say yes on the phone and then don't come. The worst is Monday mornings, two or three empty slots almost every week.
+[00:00:45] Interviewer: What happens to an empty slot?
+[00:00:48] Nadia: The therapist sits there, unpaid time for the clinic. My boss gets very frustrated, she says it's the biggest leak in the business.
+[00:01:05] Interviewer: Do patients ask to book online?
+[00:01:09] Nadia: Yes, a lot of the younger ones ask why they can't book on the website. They text us at 11pm asking for a slot. I'd love that, honestly, fewer calls for me.
+[00:01:28] Interviewer: Have you looked at other software?
+[00:01:31] Nadia: The owner looked at one last year. She dropped it because migrating the patient records would have taken weeks and the trial was too short.
+[00:01:48] Interviewer: Anything else that would help with missed appointments?
+[00:01:52] Nadia: Text message reminders with a button to confirm or cancel. When someone cancels, I want the slot offered to the waiting list automatically.

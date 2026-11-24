@@ -1,0 +1,51 @@
+{
+  "set": "physio-no-shows",
+  "labelled_by": "Hand-labelled ground truth for the eval harness. Quotes are verbatim substrings of the transcripts.",
+  "pain_points": [
+    {
+      "id": "PP1",
+      "label": "No-shows leave unpaid empty slots",
+      "interviews": ["C-01", "C-02", "C-03", "C-05"],
+      "quotes": [
+        {"interview": "C-01", "quote": "each one is an empty 45-minute slot I can't fill at the last minute."},
+        {"interview": "C-02", "quote": "The therapist sits there, unpaid time for the clinic."},
+        {"interview": "C-03", "quote": "when someone doesn't come I'm not earning anything for that hour but I still pay the room rent."},
+        {"interview": "C-05", "quote": "I calculated last year that missed appointments cost us around 18,000 euros."}
+      ]
+    },
+    {
+      "id": "PP2",
+      "label": "Manual reminder calls take a lot of staff time",
+      "interviews": ["C-01", "C-02"],
+      "quotes": [
+        {"interview": "C-01", "quote": "It takes her most of the afternoon, and half the time she gets voicemail."},
+        {"interview": "C-02", "quote": "I make about forty reminder calls every afternoon."}
+      ]
+    },
+    {
+      "id": "PP3",
+      "label": "Cancelled slots are hard to refill from a waiting list",
+      "interviews": ["C-01", "C-02", "C-04"],
+      "quotes": [
+        {"interview": "C-01", "quote": "by the time we find someone on the list who can come in, the slot has passed."},
+        {"interview": "C-02", "quote": "When someone cancels, I want the slot offered to the waiting list automatically."}
+      ]
+    },
+    {
+      "id": "PP4",
+      "label": "Switching practice software is costly and feared",
+      "interviews": ["C-01", "C-02", "C-03", "C-05"],
+      "quotes": [
+        {"interview": "C-01", "quote": "Switching software is my nightmare."},
+        {"interview": "C-03", "quote": "I lost a weekend to exporting and re-importing patient files."},
+        {"interview": "C-05", "quote": "Changing software means retraining everyone and moving all the records."}
+      ]
+    }
+  ],
+  "verdicts": {
+    "H1": {"verdict": "VALIDATED", "why": "4 of 5 describe no-shows as a major cost (C-05 quantifies 18,000 EUR/year); C-04 is the exception (3 percent no-shows)."},
+    "H2": {"verdict": "MIXED", "why": "Younger and sports patients book online (C-02, C-03, C-04); older patients prefer the phone (C-01, C-05)."},
+    "H3": {"verdict": "INVALIDATED", "why": "Every clinic resists switching; they would only adopt something that works alongside current software."},
+    "H4": {"verdict": "UNTESTED", "why": "Cancellation fees are not discussed in any interview."}
+  }
+}

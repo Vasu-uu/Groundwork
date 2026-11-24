@@ -1,0 +1,17 @@
+---
+id: C-05
+participant: Yusuf
+persona: Co-owner of a 4-therapist clinic in a residential area
+date: 2026-09-24
+---
+
+Interviewer: Tell me about missed appointments at your clinic.
+Yusuf: It's our number one financial problem. I calculated last year that missed appointments cost us around 18,000 euros. That's more than our software and our marketing combined.
+Interviewer: How did you calculate that?
+Yusuf: I counted the no-shows in our calendar for three months and multiplied by our average session price. I was shocked.
+Interviewer: What do your patients prefer for booking?
+Yusuf: Our patients are mostly retired. They want to call, and they want to speak to Anna at reception. We tried online booking for a while and almost nobody used it.
+Interviewer: What have you tried for no-shows?
+Yusuf: Reminder calls, and once we tried double-booking the Monday slots. That backfired the day everyone showed up.
+Interviewer: Would you move to new software to reduce no-shows?
+Yusuf: We would need to see proof first. Changing software means retraining everyone and moving all the records. If something worked alongside our current system I'd try it tomorrow.

@@ -1,0 +1,12 @@
+{
+  "id": "physio-no-shows",
+  "name": "Small physiotherapy clinics and no-shows",
+  "description": "Five fictional interviews with owners and front-desk staff of small physiotherapy clinics.",
+  "product_idea": "Software that reduces missed appointments for small clinics.",
+  "hypotheses": [
+    {"id": "H1", "text": "No-shows are a major source of lost revenue for small clinics."},
+    {"id": "H2", "text": "Patients want to book their appointments online themselves."},
+    {"id": "H3", "text": "Clinic owners would switch practice-management software to reduce no-shows."},
+    {"id": "H4", "text": "Clinics would charge a cancellation fee if the software enforced it automatically."}
+  ]
+}

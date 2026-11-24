@@ -8,7 +8,10 @@ Groundwork extracts pain points tied to verbatim, verified quotes, clusters
 them into themes, and suggests a verdict for each hypothesis. You review every
 verdict at a human checkpoint before it drafts your next interview script.
 
-> Status: work in progress (Stage 1 of 8: scaffold, LLM provider layer, health check).
+> Status: work in progress (Stage 2 of 8: transcript parsing, segmentation, sample data).
+>
+> Try the parser: `python -m scripts.segment --set freelance-invoicing` (from `backend/`).
+> Sample data is described in [samples/README.md](samples/README.md).
 
 ## Free by design
 

@@ -1,0 +1,19 @@
+---
+id: I-05
+participant: Sofia
+persona: Freelance translator, mostly agencies
+date: 2026-10-09
+---
+
+Interviewer: How do you get paid by your clients?
+Sofia: Mostly agencies. They have a monthly payment run, so I send all my invoices before the 25th and get paid on the 10th of the next month. It's very regular.
+Interviewer: So late payments aren't an issue for you?
+Sofia: Not really. Maybe once a year an agency is late and one email fixes it. I know that's not normal for other freelancers, but translation agencies are quite organised.
+Interviewer: What's the hardest part of the money side for you, then?
+Sofia: Keeping track of everything across currencies. I work with agencies in three countries, so I have euros, pounds and Swiss francs, and my spreadsheet is a nightmare at tax time.
+Interviewer: Tell me more about tax time.
+Sofia: VAT rules for clients outside the country confuse me every single year. I'm never sure if I filled in the reverse-charge box correctly, so I pay an accountant 400 euros just for that.
+Interviewer: How long does it take you to create an invoice?
+Sofia: Very little. The agencies often generate the purchase order and I just copy the numbers into my template.
+Interviewer: Would you pay for automatic payment reminders?
+Sofia: No, I wouldn't use them. My clients pay on time.

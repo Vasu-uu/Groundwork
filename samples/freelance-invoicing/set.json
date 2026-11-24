@@ -1,0 +1,12 @@
+{
+  "id": "freelance-invoicing",
+  "name": "Freelancers and late invoices",
+  "description": "Six fictional interviews with solo freelancers about getting paid. Mixed formats: markdown, timestamped text, Q&A and founder notes.",
+  "product_idea": "A tool that helps freelancers get paid on time.",
+  "hypotheses": [
+    {"id": "H1", "text": "Freelancers struggle to chase late invoices."},
+    {"id": "H2", "text": "Freelancers would pay for a tool that sends automated payment reminders."},
+    {"id": "H3", "text": "Creating invoices is time-consuming for freelancers."},
+    {"id": "H4", "text": "Freelancers want to accept payments in cryptocurrency."}
+  ]
+}

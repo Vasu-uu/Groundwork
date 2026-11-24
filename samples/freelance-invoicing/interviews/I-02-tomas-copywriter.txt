@@ -1,0 +1,23 @@
+---
+id: I-02
+participant: Tomas
+persona: Freelance copywriter, retainers and projects
+date: 2026-10-03
+---
+
+Interview I-02, freelance copywriter (Tomas), recorded call, auto-transcribed and cleaned.
+
+[00:00:04] Interviewer: Could you start by telling me how you bill clients?
+[00:00:09] Tomas: I bill per project, sometimes a monthly retainer. I've got about eight active clients at any time.
+[00:00:21] Interviewer: How do you keep track of who has paid?
+[00:00:25] Tomas: A spreadsheet. A messy one. I have a column for invoice sent, a column for paid, and I colour the late ones red. Half the time I forget to update it, so I'm never fully sure who owes me what.
+[00:00:51] Interviewer: What happens when a payment is late?
+[00:00:55] Tomas: Usually it's not that they refuse, it's that the invoice is stuck with someone in accounts payable. So I email my contact, my contact forwards it, and it disappears again. Chasing late invoices eats a couple of hours every month, and it's the part of the job I dread most.
+[00:01:30] Interviewer: Can you remember a recent example?
+[00:01:33] Tomas: In September a client paid two invoices at once, three months late. Meanwhile I'd paid my own taxes on that money already. That gap is what kills me, the cash flow, not the total amount.
+[00:02:02] Interviewer: What have you tried to fix it?
+[00:02:05] Tomas: I tried adding a late fee clause to my contracts. Nobody has ever paid the late fee and I've never dared to enforce it.
+[00:02:20] Interviewer: Would you pay for something that sends reminders automatically?
+[00:02:24] Tomas: Maybe. I'd want to try it free first. I'm not sure reminders alone fix the accounts payable black hole.
+[00:02:40] Interviewer: How long does creating an invoice take you?
+[00:02:43] Tomas: Creating it? Two minutes. I duplicate the last one and change the numbers.

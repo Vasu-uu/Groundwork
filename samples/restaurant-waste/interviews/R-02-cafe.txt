@@ -1,0 +1,15 @@
+---
+id: R-02
+participant: Hana
+persona: Owner of a brunch cafe with a short menu
+date: 2026-10-22
+---
+
+Interviewer: Is food waste a problem for you?
+Hana: Honestly, not much. Our menu is short on purpose, ten dishes, and we reuse everything. Yesterday's bread becomes today's French toast. I'd say waste is under 3 percent.
+Interviewer: How do you order?
+Hana: Daily, from a local bakery and a market wholesaler. They don't have minimums for regular customers, so I can order exactly what I need.
+Interviewer: Do you track inventory?
+Hana: On a whiteboard in the kitchen. An app would be one more thing to update, and my staff wouldn't keep it up.
+Interviewer: What is your biggest operational headache?
+Hana: Staffing. Finding people for weekend shifts is much harder than anything to do with food.

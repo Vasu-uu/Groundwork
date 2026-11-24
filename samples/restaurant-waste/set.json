@@ -1,0 +1,11 @@
+{
+  "id": "restaurant-waste",
+  "name": "Independent restaurants and food waste (small sample)",
+  "description": "Only three fictional interviews with independent restaurant owners. Deliberately below the 5-interview threshold, to demonstrate the small-sample warning.",
+  "product_idea": "An app that helps small restaurants order the right quantities.",
+  "hypotheses": [
+    {"id": "H1", "text": "Small restaurant owners lose significant money to food waste from over-ordering."},
+    {"id": "H2", "text": "Restaurant owners would use an app to track inventory every day."},
+    {"id": "H3", "text": "Supplier minimum order quantities force restaurants to over-buy."}
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "set": "freelance-invoicing",
+  "labelled_by": "Hand-labelled ground truth for the eval harness. Quotes are verbatim substrings of the transcripts.",
+  "pain_points": [
+    {
+      "id": "PP1",
+      "label": "Chasing late payments is stressful and awkward",
+      "interviews": ["I-01", "I-02", "I-03", "I-04", "I-06"],
+      "quotes": [
+        {"interview": "I-01", "quote": "I hate chasing people for money. It feels like I'm begging for something I already earned."},
+        {"interview": "I-02", "quote": "Chasing late invoices eats a couple of hours every month, and it's the part of the job I dread most."},
+        {"interview": "I-03", "quote": "I've had to chase one client for six weeks and I ended up texting the CEO directly, which felt awful."},
+        {"interview": "I-06", "quote": "I have to chase almost every single one, and some I just give up on"}
+      ]
+    },
+    {
+      "id": "PP2",
+      "label": "Late payments make cash flow unpredictable",
+      "interviews": ["I-01", "I-02", "I-03", "I-06"],
+      "quotes": [
+        {"interview": "I-01", "quote": "I had to dip into my savings to pay rent."},
+        {"interview": "I-02", "quote": "That gap is what kills me, the cash flow, not the total amount."},
+        {"interview": "I-03", "quote": "That's two months of my living costs just sitting there."},
+        {"interview": "I-06", "quote": "I've had my card declined at the supermarket while clients owed me 2,000 euros."}
+      ]
+    },
+    {
+      "id": "PP3",
+      "label": "Hard to keep track of who owes what",
+      "interviews": ["I-02", "I-03", "I-04", "I-05"],
+      "quotes": [
+        {"interview": "I-02", "quote": "Half the time I forget to update it, so I'm never fully sure who owes me what."},
+        {"interview": "I-03", "quote": "I've definitely forgotten to follow up on an invoice before and only noticed months later."},
+        {"interview": "I-05", "quote": "my spreadsheet is a nightmare at tax time."}
+      ]
+    },
+    {
+      "id": "PP4",
+      "label": "Confusion about cross-border VAT",
+      "interviews": ["I-05", "I-06"],
+      "quotes": [
+        {"interview": "I-05", "quote": "VAT rules for clients outside the country confuse me every single year."},
+        {"interview": "I-06", "quote": "I'm confused about whether I need to charge VAT to creators in other countries."}
+      ]
+    },
+    {
+      "id": "PP5",
+      "label": "Corporate purchase-order processes delay payment",
+      "interviews": ["I-02", "I-04"],
+      "quotes": [
+        {"interview": "I-02", "quote": "it's that the invoice is stuck with someone in accounts payable."}
+      ]
+    }
+  ],
+  "verdicts": {
+    "H1": {"verdict": "VALIDATED", "why": "5 of 6 interviewees describe chasing late payments as painful; I-05 is the exception (agency payment runs)."},
+    "H2": {"verdict": "MIXED", "why": "I-01 and I-06 would pay; I-03 and I-05 would not, I-02 and I-04 are lukewarm. Free reminders already exist."},
+    "H3": {"verdict": "INVALIDATED", "why": "Everyone who discussed it says creating an invoice takes minutes with a template."},
+    "H4": {"verdict": "UNTESTED", "why": "No interview mentions cryptocurrency or alternative payment methods."}
+  }
+}
