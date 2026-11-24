@@ -12,3 +12,6 @@ fails if one is missing or unexpected. See `app/llm/prompts.py`.
 | Prompt | Used by | Notes |
 | --- | --- | --- |
 | `extract_pain_points.v1` | `app/services/extraction.py` | Hypothesis-blind; verbatim quote + segment per pain point |
+| `cluster_pain_points.v1` | `app/services/clustering.py` | Map step: groups pain points; frequencies computed in code |
+| `merge_themes.v1` | `app/services/clustering.py` | Reduce step: merges themes across batches |
+| `assess_hypotheses.v1` | `app/services/assessment.py` | Per-interview stance per hypothesis with quotes; verdict computed by rules in `verdicts.py` |

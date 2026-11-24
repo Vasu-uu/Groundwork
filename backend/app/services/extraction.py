@@ -13,7 +13,6 @@ founder's hypotheses here, so it cannot go looking for confirming quotes.
 
 from __future__ import annotations
 
-import asyncio
 import logging
 from dataclasses import dataclass
 from typing import Any
@@ -32,6 +31,7 @@ from app.models.evidence import (
     VerificationStats,
 )
 from app.models.transcript import Segment, SpeakerRole, Transcript
+from app.services.concurrency import map_bounded
 from app.services.corpus import Corpus
 from app.services.segmentation import chunk_segments
 from app.services.verification import DEFAULT_THRESHOLD, to_evidence, verify_quote
@@ -244,23 +244,15 @@ async def extract_corpus(
     """Run extraction over every interview, `config.concurrency` at a time."""
     config = config or ExtractionConfig()
     prompt = load_prompt(PROMPT_NAME)
-    gate = asyncio.Semaphore(config.concurrency)
 
     async def one(t: Transcript) -> ExtractionResult:
-        async with gate:
-            return await extract_interview(
-                t, provider, options=options, tracker=tracker, config=config, prompt=prompt
-            )
+        return await extract_interview(
+            t, provider, options=options, tracker=tracker, config=config, prompt=prompt
+        )
 
-    # TaskGroup cancels the remaining interviews as soon as one hits a provider
-    # error (e.g. Ollama went down), instead of failing them one by one.
-    try:
-        async with asyncio.TaskGroup() as group:
-            tasks = [group.create_task(one(t)) for t in corpus.transcripts]
-    except ExceptionGroup as group_error:
-        # Surface the first real error (e.g. ProviderUnavailableError) to callers.
-        raise group_error.exceptions[0] from None
+    # Fails fast: a provider error (e.g. Ollama went down) cancels the rest.
+    results = await map_bounded(one, corpus.transcripts, config.concurrency)
     total = ExtractionResult(prompt_id=prompt.id)
-    for task in tasks:  # input order, so the output is deterministic
-        total = total.merge(task.result())
+    for r in results:  # input order, so the output is deterministic
+        total = total.merge(r)
     return total
