@@ -8,7 +8,7 @@ Groundwork extracts pain points tied to verbatim, verified quotes, clusters
 them into themes, and suggests a verdict for each hypothesis. You review every
 verdict at a human checkpoint before it drafts your next interview script.
 
-> Status: work in progress (Stage 5 of 8: REST API, decision log, server-enforced human checkpoint).
+> Status: work in progress (Stage 6 of 8: web app with the four-step flow and the review checkpoint).
 > API docs at http://localhost:8000/docs once `uvicorn app.main:app` is running.
 >
 > From `backend/`: `python -m scripts.segment --set freelance-invoicing` previews parsing;
@@ -37,6 +37,28 @@ python -m scripts.check_llm     # one-shot provider smoke test
 uvicorn app.main:app --reload   # then open http://localhost:8000/api/health
 pytest                          # run the test suite
 ```
+
+## Quick start (web app, manual)
+
+Requires Node.js 20+. Start the backend first (above), then:
+
+```bash
+cd frontend
+npm install
+npm run dev                     # http://localhost:5173, proxies /api to localhost:8000
+npm test                        # component and unit tests (Vitest)
+```
+
+Set `GROUNDWORK_API` to point the dev proxy at a backend on another address.
+
+The app walks through four steps: **1** add interviews and hypotheses and run
+the analysis; **2** read pain themes and the AI-suggested verdicts, with
+supporting and contradicting quotes side by side (click any quote to see it
+highlighted in its transcript; toggle *devil's advocate* for the strongest
+evidence against); **3** the human checkpoint, where you accept, change or
+reject each verdict and remove misread quotes ("Approve and continue" stays
+disabled until every verdict is reviewed); **4** your approved decisions, which
+drive the next interview script.
 
 ## API overview
 
