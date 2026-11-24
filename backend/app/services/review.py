@@ -19,8 +19,9 @@ from enum import StrEnum
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from app.db.models import ReviewRow, StudyRow, utcnow
+from app.db.models import ReviewRow, ScriptRow, StudyRow, utcnow
 from app.models.analysis import HypothesisVerdict, InterviewAssessment, VerdictLabel
+from app.models.evidence import Evidence
 from app.services.assessment import final_stance
 from app.services.errors import CheckpointError, ConflictError, InvalidInputError, NotFoundError
 from app.services.studies import (
@@ -220,6 +221,50 @@ def reopen_study(db: Session, row: StudyRow, reason: str = "") -> None:
     row.approved_at = None
     row.updated_at = utcnow()
     log_event(db, row.id, Actor.FOUNDER, "reopened", reason=reason.strip())
+    # The script was drafted from the decisions being reopened: it is stale now.
+    if (script := db.get(ScriptRow, row.id)) is not None:
+        db.delete(script)
+        log_event(db, row.id, Actor.SYSTEM, "script_discarded", reason="review reopened")
+
+
+class FinalDecision(BaseModel):
+    """A founder-approved decision: what downstream steps are allowed to use."""
+
+    hypothesis_id: str
+    text: str
+    ai_verdict: VerdictLabel
+    final_verdict: VerdictLabel | None = Field(description="None: rejected, to be re-tested")
+    decision: Decision
+    reasoning: str
+    note: str
+    supporting: list[Evidence]
+    contradicting: list[Evidence]
+
+
+def final_decisions(db: Session, row: StudyRow) -> list[FinalDecision]:
+    """The approved decisions, with removed quotes left out. Gated by the checkpoint."""
+    require_approved(row)
+    result = result_of(row)
+    assert result is not None  # an approved study always has a result
+    reviews = reviews_of(db, row.id)
+    out = []
+    for v in result.verdicts:
+        r = reviews[v.hypothesis.id]
+        removed = set(r.removed_evidence)
+        out.append(
+            FinalDecision(
+                hypothesis_id=v.hypothesis.id,
+                text=v.hypothesis.text,
+                ai_verdict=v.verdict,
+                final_verdict=r.final_verdict,
+                decision=Decision(r.decision),
+                reasoning=r.reasoning,
+                note=r.note,
+                supporting=[e for e in v.supporting if e.key not in removed],
+                contradicting=[e for e in v.contradicting if e.key not in removed],
+            )
+        )
+    return out
 
 
 def require_approved(row: StudyRow) -> None:

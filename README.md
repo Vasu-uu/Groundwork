@@ -8,7 +8,7 @@ Groundwork extracts pain points tied to verbatim, verified quotes, clusters
 them into themes, and suggests a verdict for each hypothesis. You review every
 verdict at a human checkpoint before it drafts your next interview script.
 
-> Status: work in progress (Stage 6 of 8: web app with the four-step flow and the review checkpoint).
+> Status: work in progress (Stage 7 of 8: next interview script and Markdown/PDF export).
 > API docs at http://localhost:8000/docs once `uvicorn app.main:app` is running.
 >
 > From `backend/`: `python -m scripts.segment --set freelance-invoicing` previews parsing;
@@ -57,8 +57,11 @@ supporting and contradicting quotes side by side (click any quote to see it
 highlighted in its transcript; toggle *devil's advocate* for the strongest
 evidence against); **3** the human checkpoint, where you accept, change or
 reject each verdict and remove misread quotes ("Approve and continue" stays
-disabled until every verdict is reviewed); **4** your approved decisions, which
-drive the next interview script.
+disabled until every verdict is reviewed); **4** the next interview script,
+drafted only for what is still uncertain (hypotheses you marked UNTESTED, MIXED
+or re-test, plus your strongest pain themes). Each question has a bias check,
+and rules flag leading, hypothetical, closed or loaded wording, including in
+your own edits. Export everything as a Markdown or PDF report.
 
 ## API overview
 
@@ -72,6 +75,8 @@ drive the next interview script.
 | `POST /api/studies/{id}/approve` / `.../reopen` | Pass the checkpoint (refused until every verdict is reviewed) or reopen it |
 | `GET /api/studies/{id}/decisions` | Approved decisions; returns `409 checkpoint_required` before approval |
 | `GET /api/studies/{id}/decision-log` | Append-only log of AI suggestions and founder decisions with timestamps |
+| `POST /api/studies/{id}/script` / `GET` / `PUT` | Draft, read or edit the next interview script (gated by the checkpoint) |
+| `GET /api/studies/{id}/report.md` / `report.pdf` | Export decisions, evidence with sources, themes, script, decision log and AI usage (gated) |
 
 ## Configuration
 

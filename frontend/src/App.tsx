@@ -93,7 +93,7 @@ function StudyView({ id, step, go, onHome }: { id: string; step: number; go: (n:
         ) : step === 3 ? (
           <ReviewStep study={study} setStudy={setStudy} goStep={go} />
         ) : (
-          <NextStep study={study} />
+          <NextStep study={study} refresh={refresh} />
         )}
       </SourceProvider>
     </Shell>

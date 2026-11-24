@@ -9,10 +9,11 @@ from pydantic import BaseModel, Field, computed_field
 
 from app.llm.usage import UsageSummary
 from app.models.analysis import AnalysisResult, VerdictLabel
-from app.models.evidence import Evidence
 from app.models.hypothesis import Hypothesis
 from app.models.transcript import SpeakerRole, Transcript
 from app.services.review import CheckpointState
+from app.services.review import FinalDecision as FinalDecisionOut  # noqa: F401 (re-export)
+from app.services.script import QuestionEdit
 
 # --- Requests -------------------------------------------------------------------------------
 
@@ -154,15 +155,7 @@ class LogEntryOut(BaseModel):
     details: dict[str, Any]
 
 
-class FinalDecisionOut(BaseModel):
-    """A founder-approved decision: what downstream steps are allowed to use."""
+class ScriptEditIn(BaseModel):
+    """The founder's version of the question list: order, wording, additions, removals."""
 
-    hypothesis_id: str
-    text: str
-    ai_verdict: VerdictLabel
-    final_verdict: VerdictLabel | None
-    decision: str
-    reasoning: str
-    note: str
-    supporting: list[Evidence]
-    contradicting: list[Evidence]
+    questions: list[QuestionEdit] = Field(max_length=40)

@@ -38,7 +38,7 @@ export const PROGRESS_STEPS = [
 export const FAILURE_HELP: Record<string, { title: string; action: string }> = {
   provider_unavailable: {
     title: "The language model could not be reached",
-    action: "Start Ollama (`ollama serve`) or check your network, then run the analysis again.",
+    action: "Start Ollama (`ollama serve`) or check your network, then try again.",
   },
   provider_config: {
     title: "The language model is not set up",
@@ -46,7 +46,7 @@ export const FAILURE_HELP: Record<string, { title: string; action: string }> = {
   },
   model_output: {
     title: "The model kept returning unusable answers",
-    action: "Run the analysis again, or try a larger model.",
+    action: "Try again, or use a larger model.",
   },
   invalid_input: {
     title: "There is nothing to analyse",

@@ -56,6 +56,9 @@ def _segment_of(text: str, quote: str) -> int:
     return 1
 
 
+_TARGET = re.compile(r"^- ([HT]\d+)\b", re.MULTILINE)
+
+
 class OracleProvider(MockProvider):
     """Answers extraction, clustering and assessment prompts from ground truth."""
 
@@ -66,6 +69,8 @@ class OracleProvider(MockProvider):
 
     def _respond(self, messages: list[Message], options: GenerationOptions) -> str:
         system, user = messages[0].content, messages[-1].content
+        if "NEXT interview" in system:
+            return self._script(user)
         if "THEMES" in system:
             return self._cluster(user)
         if "skeptical" in system:
@@ -91,6 +96,19 @@ class OracleProvider(MockProvider):
             for label, ids in groups.items()
         ]
         return json.dumps({"themes": themes})
+
+    def _script(self, user: str) -> str:
+        questions = [
+            {
+                "target": tid,
+                "question": f"Tell me about the last time {tid} came up in your work.",
+                "purpose": f"Learn about {tid} from past behaviour.",
+                "bias_check": "Asks about a past event, not an opinion or prediction.",
+                "follow_ups": ["What happened next?"],
+            }
+            for tid in _TARGET.findall(user)
+        ]
+        return json.dumps({"questions": questions})
 
     def _assess(self, user: str) -> str:
         iid = _INTERVIEW.search(user).group(1)  # type: ignore[union-attr]

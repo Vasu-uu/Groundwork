@@ -92,3 +92,15 @@ class LLMCallRow(Base):
     latency_ms: Mapped[float] = mapped_column(default=0.0)
     ok: Mapped[bool] = mapped_column(default=True)
     at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+
+
+class ScriptRow(Base):
+    """The next interview script for an approved study (one per study, replaced on regenerate)."""
+
+    __tablename__ = "scripts"
+
+    study_id: Mapped[str] = mapped_column(
+        ForeignKey("studies.id", ondelete="CASCADE"), primary_key=True
+    )
+    data: Mapped[dict[str, Any]] = mapped_column(default=dict)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)

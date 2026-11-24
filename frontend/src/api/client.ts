@@ -4,7 +4,9 @@
 import type {
   FinalDecision,
   Health,
+  InterviewScript,
   LogEntry,
+  QuestionEdit,
   ReviewInput,
   SampleSet,
   StatusResponse,
@@ -90,4 +92,13 @@ export const api = {
   reopen: (id: string, reason: string) => json<Study>("POST", `/studies/${id}/reopen`, { reason }),
   decisions: (id: string) => request<FinalDecision[]>(`/studies/${id}/decisions`),
   decisionLog: (id: string) => request<LogEntry[]>(`/studies/${id}/decision-log`),
+  script: (id: string) => request<InterviewScript>(`/studies/${id}/script`),
+  generateScript: (id: string) => json<InterviewScript>("POST", `/studies/${id}/script`),
+  saveScript: (id: string, questions: QuestionEdit[]) =>
+    json<InterviewScript>("PUT", `/studies/${id}/script`, { questions }),
 };
+
+/** Download URL of the approved study's report (served as an attachment). */
+export function reportUrl(id: string, format: "md" | "pdf"): string {
+  return `${BASE}/studies/${id}/report.${format}`;
+}

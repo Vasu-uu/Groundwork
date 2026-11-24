@@ -15,3 +15,4 @@ fails if one is missing or unexpected. See `app/llm/prompts.py`.
 | `cluster_pain_points.v1` | `app/services/clustering.py` | Map step: groups pain points; frequencies computed in code |
 | `merge_themes.v1` | `app/services/clustering.py` | Reduce step: merges themes across batches |
 | `assess_hypotheses.v1` | `app/services/assessment.py` | Per-interview stance per hypothesis with quotes; verdict computed by rules in `verdicts.py` |
+| `draft_interview_script.v1` | `app/services/script.py` | Wording only: code picks the targets (open hypotheses, top themes) and lints every question in `question_lint.py` |

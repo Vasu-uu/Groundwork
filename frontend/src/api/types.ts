@@ -283,3 +283,42 @@ export interface ReviewInput {
   removed_evidence?: string[];
   note?: string;
 }
+
+export type ScriptSection = "warmup" | "pain_followup" | "hypothesis" | "wrapup" | "custom";
+
+export interface ScriptTarget {
+  id: string;
+  kind: "hypothesis" | "theme";
+  text: string;
+  reason: string;
+}
+
+export interface ScriptQuestion {
+  id: string;
+  section: ScriptSection;
+  target: string | null;
+  question: string;
+  purpose: string;
+  bias_check: string;
+  follow_ups: string[];
+  lint: string[];
+  needs_edit: boolean;
+  edited: boolean;
+}
+
+export interface InterviewScript {
+  generated_at: string;
+  edited_at: string | null;
+  prompt_id: string | null;
+  model: string | null;
+  targets: ScriptTarget[];
+  questions: ScriptQuestion[];
+  warnings: string[];
+}
+
+export interface QuestionEdit {
+  id: string | null;
+  question: string;
+  follow_ups: string[];
+  purpose?: string;
+}
