@@ -3,8 +3,10 @@
 **Evidence-first customer discovery copilot for early-stage founders.**
 Entry for the *AI Agents for Founders Challenge (HETIC 2026)*.
 
-![Demo](docs/demo.gif)
-<!-- Placeholder: record the four-step flow in demo mode and save it as docs/demo.gif -->
+![Groundwork: turn customer interviews into decisions you can defend](docs/thumbnail.png)
+
+<!-- Demo GIF: record the four-step flow in demo mode, save it as docs/demo.gif,
+     and add ![Demo](docs/demo.gif) here. -->
 
 ## The problem
 
