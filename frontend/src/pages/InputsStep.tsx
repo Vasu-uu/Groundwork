@@ -173,13 +173,14 @@ function InterviewsCard({
   const [pasteOpen, setPasteOpen] = useState(false);
   const [pasteTitle, setPasteTitle] = useState("");
   const [pasteText, setPasteText] = useState("");
+  const [redact, setRedact] = useState(false);
 
   async function upload(files: File[]) {
     if (!files.length || !confirmReset()) return;
     setUploading(true);
     onError(null);
     try {
-      const r = await api.upload(study.id, files);
+      const r = await api.upload(study.id, files, redact);
       setFileErrors(r.errors);
       await onChanged();
     } catch (e) {
@@ -193,7 +194,7 @@ function InterviewsCard({
     if (!pasteText.trim() || !confirmReset()) return;
     onError(null);
     try {
-      await api.paste(study.id, pasteText, pasteTitle);
+      await api.paste(study.id, pasteText, pasteTitle, redact);
       setPasteText("");
       setPasteTitle("");
       setPasteOpen(false);
@@ -256,8 +257,18 @@ function InterviewsCard({
             paste text
           </button>
         </p>
+        <label className="mt-2 flex items-center gap-2 text-xs text-stone-600">
+          <input
+            type="checkbox"
+            checked={redact}
+            disabled={disabled}
+            onChange={(e) => setRedact(e.target.checked)}
+            className="size-3.5 accent-brand-700"
+          />
+          Replace speaker names with “Participant” and “Interviewer”
+        </label>
         <p className="mt-1 text-xs text-stone-500">
-          Remove names and personal details you do not need before uploading.
+          Other names and personal details in the text are not detected: remove what you do not need before uploading.
         </p>
         <input
           ref={input}

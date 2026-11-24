@@ -17,9 +17,11 @@ export function Home({ onOpen }: { onOpen: (id: string) => void }) {
   const [name, setName] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [demo, setDemo] = useState(false);
 
   useEffect(() => {
     api.samples().then(setSamples).catch(() => {});
+    api.health().then((h) => setDemo(h.llm.provider === "demo")).catch(() => {});
     api.studies().then(setStudies).catch((e: ApiError) => setError(e.message));
   }, []);
 
@@ -32,6 +34,16 @@ export function Home({ onOpen }: { onOpen: (id: string) => void }) {
       setError(e instanceof ApiError ? e.message : String(e));
     } finally {
       setBusy(null);
+    }
+  }
+
+  async function remove(s: StudySummary) {
+    if (!window.confirm(`Delete “${s.name}” with its interviews, decisions and log? This cannot be undone.`)) return;
+    try {
+      await api.deleteStudy(s.id);
+      setStudies((all) => all.filter((x) => x.id !== s.id));
+    } catch (e) {
+      setError(e instanceof ApiError ? e.message : String(e));
     }
   }
 
@@ -53,6 +65,15 @@ export function Home({ onOpen }: { onOpen: (id: string) => void }) {
       </section>
 
       {error && <Banner tone="rose" title="Something went wrong">{error}</Banner>}
+      {demo && (
+        <Banner tone="brand" title="Demo mode: no language model is running">
+          <p>
+            Answers are replayed from hand labels for the three sample sets, so you can try the whole flow in
+            seconds. Quote verification, theme frequencies, verdict rules and your review are all real. Your own
+            interviews will return no findings until you switch <code>LLM_PROVIDER</code> to <code>ollama</code>.
+          </p>
+        </Banner>
+      )}
 
       <section>
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-stone-500">
@@ -112,16 +133,26 @@ export function Home({ onOpen }: { onOpen: (id: string) => void }) {
           ) : (
             <ul className="mt-3 divide-y divide-stone-100">
               {studies.slice(0, 8).map((s) => (
-                <li key={s.id}>
+                <li key={s.id} className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => onOpen(s.id)}
-                    className="flex w-full items-center justify-between gap-3 py-2 text-left text-sm hover:text-brand-800"
+                    className="flex min-w-0 flex-1 items-center justify-between gap-3 py-2 text-left text-sm hover:text-brand-800"
                   >
                     <span className="truncate font-medium">{s.name}</span>
                     <span className="shrink-0 text-xs text-stone-500">
                       {s.interviews} interviews · {STATUS_LABEL[s.status] ?? s.status}
                     </span>
+                  </button>
+                  <button
+                    type="button"
+                    aria-label={`Delete ${s.name}`}
+                    title="Delete this study and all its data"
+                    disabled={s.status === "analyzing"}
+                    onClick={() => void remove(s)}
+                    className="rounded px-1.5 py-1 text-xs text-stone-400 hover:bg-rose-50 hover:text-rose-700 disabled:opacity-40"
+                  >
+                    Delete
                   </button>
                 </li>
               ))}

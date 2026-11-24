@@ -30,6 +30,10 @@ def create_provider(settings: Settings) -> LLMProvider:
             )
         case ProviderName.MOCK:
             return MockProvider()
+        case ProviderName.DEMO:
+            from app.llm.demo import DemoProvider  # imports the sample loader; keep it lazy
+
+            return DemoProvider()
     raise ValueError(f"Unknown provider: {settings.llm_provider}")  # pragma: no cover
 
 

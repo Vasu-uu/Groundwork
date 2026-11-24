@@ -23,6 +23,7 @@ class ProviderName(StrEnum):
     OLLAMA = "ollama"
     GROQ = "groq"
     MOCK = "mock"
+    DEMO = "demo"  # replays hand labels for the sample sets; no model needed
 
 
 class Settings(BaseSettings):
@@ -96,6 +97,7 @@ class Settings(BaseSettings):
             ProviderName.OLLAMA: self.ollama_model,
             ProviderName.GROQ: self.groq_model,
             ProviderName.MOCK: "mock",
+            ProviderName.DEMO: "hand-labelled-replay",
         }[self.llm_provider]
 
 

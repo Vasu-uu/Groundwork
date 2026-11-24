@@ -223,6 +223,13 @@ def add_transcripts(db: Session, row: StudyRow, new: list[Transcript]) -> list[T
     return added
 
 
+def delete_study(db: Session, row: StudyRow) -> None:
+    """Delete a study and everything attached to it (reviews, log, calls, script)."""
+    if _status(row) is StudyStatus.ANALYZING:
+        raise ConflictError("Wait for the analysis to finish before deleting the study.")
+    db.delete(row)  # child rows go with it (ON DELETE CASCADE)
+
+
 def remove_transcript(db: Session, row: StudyRow, interview_id: str) -> None:
     _require_editable(row)
     before = len(row.transcripts)

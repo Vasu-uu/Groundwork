@@ -15,7 +15,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from app.config import Settings
-from app.llm import GenerationOptions, LLMProvider, UsageTracker
+from app.llm import GenerationOptions, LLMError, LLMProvider, UsageTracker
 from app.models.analysis import AnalysisResult
 from app.models.hypothesis import Hypothesis
 from app.services.assessment import assess_corpus
@@ -40,6 +40,10 @@ class AnalysisConfig:
             extraction=ExtractionConfig.from_settings(s),
             clustering=ClusterConfig(max_retries=s.llm_max_retries),
         )
+
+
+class AnalysisModelError(LLMError):
+    """The model returned unusable output for every interview: there are no results."""
 
 
 class AnalysisInputError(ValueError):
@@ -95,6 +99,20 @@ async def run_analysis(
     assessment = await assess_corpus(
         corpus, hypotheses, provider, options=options, tracker=tracker, config=config.extraction
     )
+    usable = [t for t in corpus.transcripts if t.evidence_segments]
+    extraction_failed = {f.interview_id for f in extraction.failures}
+    if (
+        usable
+        and not extraction.pain_points
+        and extraction_failed >= {t.id for t in usable}
+        and set(assessment.failed_interviews) >= {t.id for t in usable}
+    ):
+        # Empty results must not be shown as findings ("no pain points").
+        raise AnalysisModelError(
+            "The model returned unusable output for every interview, even after retries. "
+            "Try again, or use a larger model."
+        )
+
     progress("deciding")
     verdicts = [
         build_verdict(

@@ -57,5 +57,213 @@
     "H2": {"verdict": "MIXED", "why": "I-01 and I-06 would pay; I-03 and I-05 would not, I-02 and I-04 are lukewarm. Free reminders already exist."},
     "H3": {"verdict": "INVALIDATED", "why": "Everyone who discussed it says creating an invoice takes minutes with a template."},
     "H4": {"verdict": "UNTESTED", "why": "No interview mentions cryptocurrency or alternative payment methods."}
+  },
+  "stances_note": "Per-interview stance on each hypothesis with verbatim quotes. Interviews not listed did not discuss it.",
+  "stances": {
+    "H1": {
+      "I-01": {
+        "stance": "supports",
+        "supporting": [
+          "I hate chasing people for money."
+        ],
+        "contradicting": []
+      },
+      "I-02": {
+        "stance": "supports",
+        "supporting": [
+          "Chasing late invoices eats a couple of hours every month, and it's the part of the job I dread most."
+        ],
+        "contradicting": []
+      },
+      "I-03": {
+        "stance": "supports",
+        "supporting": [
+          "I've had to chase one client for six weeks and I ended up texting the CEO directly, which felt awful."
+        ],
+        "contradicting": []
+      },
+      "I-04": {
+        "stance": "supports",
+        "supporting": [
+          "Said chasing corporate invoices is \"a second unpaid job\" and he puts it off for weeks because it feels awkward."
+        ],
+        "contradicting": []
+      },
+      "I-05": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Maybe once a year an agency is late and one email fixes it."
+        ]
+      },
+      "I-06": {
+        "stance": "supports",
+        "supporting": [
+          "I have to chase almost every single one, and some I just give up on because chasing a 300 euro invoice for weeks isn't worth the stress."
+        ],
+        "contradicting": []
+      }
+    },
+    "H2": {
+      "I-01": {
+        "stance": "supports",
+        "supporting": [
+          "If it actually got me paid faster and didn't damage the relationship, yes, I'd pay ten or fifteen euros a month without thinking."
+        ],
+        "contradicting": []
+      },
+      "I-02": {
+        "stance": "mixed",
+        "supporting": [
+          "Maybe. I'd want to try it free first."
+        ],
+        "contradicting": [
+          "I'm not sure reminders alone fix the accounts payable black hole."
+        ]
+      },
+      "I-03": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "My tool already sends reminders and I wouldn't pay extra for that."
+        ]
+      },
+      "I-04": {
+        "stance": "mixed",
+        "supporting": [],
+        "contradicting": [
+          "Was lukewarm on paying for a reminder tool: \"the reminder isn't the problem, the PO process is.\""
+        ]
+      },
+      "I-05": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "No, I wouldn't use them."
+        ]
+      },
+      "I-06": {
+        "stance": "supports",
+        "supporting": [
+          "Yes, honestly, I would pay for that today."
+        ],
+        "contradicting": []
+      }
+    },
+    "H3": {
+      "I-01": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "I have a template in my invoicing app, so that part takes maybe five minutes."
+        ]
+      },
+      "I-02": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Creating it? Two minutes."
+        ]
+      },
+      "I-03": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "I use a free invoicing tool, the invoice itself is quick."
+        ]
+      },
+      "I-04": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Invoices themselves take him a few minutes, he did not see that as a problem."
+        ]
+      },
+      "I-05": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "The agencies often generate the purchase order and I just copy the numbers into my template."
+        ]
+      },
+      "I-06": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Making the invoice is fast, I use a template."
+        ]
+      }
+    }
+  },
+  "demo_questions": {
+    "H2": [
+      {
+        "question": "The last time a client paid late, what did you do to get paid?",
+        "purpose": "See what they already use for reminders and whether it worked.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What did that cost you in time?"
+        ]
+      },
+      {
+        "question": "What tools or services have you paid for to run the admin side of your business?",
+        "purpose": "Learn whether and how they spend money on admin tools.",
+        "bias_check": "Neutral list question; the reminder idea is never mentioned.",
+        "follow_ups": [
+          "How did you decide to pay for that one?"
+        ]
+      }
+    ],
+    "H3": [
+      {
+        "question": "Walk me through how you created your most recent invoice.",
+        "purpose": "Re-test how long invoice creation takes, step by step.",
+        "bias_check": "Asks for a walk-through instead of whether it is slow, which would lead the answer.",
+        "follow_ups": [
+          "Which step took the longest?"
+        ]
+      }
+    ],
+    "H4": [
+      {
+        "question": "How have your clients paid you over the last few months?",
+        "purpose": "Find out whether payment methods come up at all, without naming crypto.",
+        "bias_check": "Open question; naming cryptocurrency would plant the idea.",
+        "follow_ups": [
+          "Has a client ever asked to pay another way?"
+        ]
+      }
+    ],
+    "PP1": [
+      {
+        "question": "Tell me about the last invoice you had to chase.",
+        "purpose": "Understand what chasing actually involves and how often it happens.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What happened next?",
+          "How long did it take to get paid?"
+        ]
+      }
+    ],
+    "PP2": [
+      {
+        "question": "How do you plan your spending when you don't know when a payment will arrive?",
+        "purpose": "Measure the real effect of late payment on cash flow.",
+        "bias_check": "Asks about current behaviour without assuming it is a problem.",
+        "follow_ups": [
+          "When did that last cause trouble?"
+        ]
+      }
+    ],
+    "PP3": [
+      {
+        "question": "How do you keep track of who still owes you money right now?",
+        "purpose": "See their current tracking system and where it breaks.",
+        "bias_check": "Asks for the current method instead of whether tracking is hard.",
+        "follow_ups": [
+          "When did something slip through?"
+        ]
+      }
+    ]
   }
 }

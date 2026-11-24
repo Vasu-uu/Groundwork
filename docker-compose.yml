@@ -1,0 +1,58 @@
+# Groundwork: web app on http://localhost:8080
+#
+#   docker compose up --build                      # uses Ollama running on your machine
+#   LLM_PROVIDER=demo docker compose up --build    # no model needed: sample-data replay
+#   docker compose --profile ollama up --build     # also run Ollama in a container
+#     then: docker compose exec ollama ollama pull qwen2.5:7b
+#     and set OLLAMA_BASE_URL=http://ollama:11434 (in .env or the shell)
+#
+# Settings come from your shell or a .env file next to this one (see .env.example).
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:7b}
+      OLLAMA_FORCE_CPU: ${OLLAMA_FORCE_CPU:-false}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-llama-3.1-8b-instant}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-300}
+      DATABASE_URL: sqlite:///./data/groundwork.db
+      CORS_ORIGINS: http://localhost:8080
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # reach an Ollama running on the host (Linux)
+    volumes:
+      - groundwork-data:/app/backend/data
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["ollama"]
+    volumes:
+      - ollama-models:/root/.ollama
+    # For an NVIDIA GPU, uncomment (needs the NVIDIA Container Toolkit):
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    restart: unless-stopped
+
+volumes:
+  groundwork-data:
+  ollama-models:

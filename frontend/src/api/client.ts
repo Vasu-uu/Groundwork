@@ -64,18 +64,20 @@ export const api = {
   studies: () => request<StudySummary[]>("/studies"),
   study: (id: string) => request<Study>(`/studies/${id}`),
   status: (id: string) => request<StatusResponse>(`/studies/${id}/status`),
+  deleteStudy: (id: string) => request<void>(`/studies/${id}`, { method: "DELETE" }),
   createStudy: (name: string, hypotheses: string[] = []) =>
     json<Study>("POST", "/studies", { name, hypotheses }),
   createFromSample: (setId: string) => json<Study>("POST", `/studies/from-sample/${setId}`),
   setHypotheses: (id: string, hypotheses: string[]) =>
     json<Study>("PUT", `/studies/${id}/hypotheses`, { hypotheses }),
-  upload: (id: string, files: File[]) => {
+  upload: (id: string, files: File[], redact = false) => {
     const form = new FormData();
     files.forEach((f) => form.append("files", f));
-    return request<UploadResult>(`/studies/${id}/interviews`, { method: "POST", body: form });
+    const query = redact ? "?redact=true" : "";
+    return request<UploadResult>(`/studies/${id}/interviews${query}`, { method: "POST", body: form });
   },
-  paste: (id: string, text: string, title: string) =>
-    json<UploadResult>("POST", `/studies/${id}/interviews/text`, { text, title }),
+  paste: (id: string, text: string, title: string, redact = false) =>
+    json<UploadResult>("POST", `/studies/${id}/interviews/text`, { text, title, redact }),
   transcript: (id: string, interviewId: string) =>
     request<Transcript>(`/studies/${id}/interviews/${encodeURIComponent(interviewId)}`),
   removeInterview: (id: string, interviewId: string) =>

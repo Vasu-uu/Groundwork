@@ -47,5 +47,180 @@
     "H2": {"verdict": "MIXED", "why": "Younger and sports patients book online (C-02, C-03, C-04); older patients prefer the phone (C-01, C-05)."},
     "H3": {"verdict": "INVALIDATED", "why": "Every clinic resists switching; they would only adopt something that works alongside current software."},
     "H4": {"verdict": "UNTESTED", "why": "Cancellation fees are not discussed in any interview."}
+  },
+  "stances_note": "Per-interview stance on each hypothesis with verbatim quotes. Interviews not listed did not discuss it.",
+  "stances": {
+    "H1": {
+      "C-01": {
+        "stance": "supports",
+        "supporting": [
+          "each one is an empty 45-minute slot I can't fill at the last minute."
+        ],
+        "contradicting": []
+      },
+      "C-02": {
+        "stance": "supports",
+        "supporting": [
+          "The therapist sits there, unpaid time for the clinic."
+        ],
+        "contradicting": []
+      },
+      "C-03": {
+        "stance": "supports",
+        "supporting": [
+          "when someone doesn't come I'm not earning anything for that hour but I still pay the room rent."
+        ],
+        "contradicting": []
+      },
+      "C-04": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "No-shows are lower than average, roughly 3 percent, because patients are motivated and book their own sessions online."
+        ]
+      },
+      "C-05": {
+        "stance": "supports",
+        "supporting": [
+          "It's our number one financial problem."
+        ],
+        "contradicting": []
+      }
+    },
+    "H2": {
+      "C-01": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Our older patients would never use it."
+        ]
+      },
+      "C-02": {
+        "stance": "supports",
+        "supporting": [
+          "Yes, a lot of the younger ones ask why they can't book on the website."
+        ],
+        "contradicting": []
+      },
+      "C-03": {
+        "stance": "supports",
+        "supporting": [
+          "About half book online now, mostly the under-40s."
+        ],
+        "contradicting": []
+      },
+      "C-04": {
+        "stance": "supports",
+        "supporting": [
+          "85 percent of bookings come through their online booking page."
+        ],
+        "contradicting": []
+      },
+      "C-05": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "We tried online booking for a while and almost nobody used it."
+        ]
+      }
+    },
+    "H3": {
+      "C-01": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Switching software is my nightmare."
+        ]
+      },
+      "C-02": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "She dropped it because migrating the patient records would have taken weeks and the trial was too short."
+        ]
+      },
+      "C-03": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "No. I just moved to my current system last year and it was painful."
+        ]
+      },
+      "C-04": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Very happy with current software, signed a 3-year contract last year; no interest in switching."
+        ]
+      },
+      "C-05": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "Changing software means retraining everyone and moving all the records."
+        ]
+      }
+    }
+  },
+  "demo_questions": {
+    "H2": [
+      {
+        "question": "How did your last ten patients book their appointment?",
+        "purpose": "Get a real split between phone and online booking for this clinic.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "Who were the ones who called?"
+        ]
+      },
+      {
+        "question": "When a patient wants to book outside opening hours, what happens today?",
+        "purpose": "Find demand for self-booking without asking for an opinion.",
+        "bias_check": "Asks about current behaviour, not whether online booking is wanted.",
+        "follow_ups": [
+          "How often does that happen?"
+        ]
+      }
+    ],
+    "H4": [
+      {
+        "question": "What happens today when a patient cancels the evening before?",
+        "purpose": "See whether cancellation fees exist or have been considered.",
+        "bias_check": "Does not mention fees, so it cannot plant the idea.",
+        "follow_ups": [
+          "Have you ever charged for a late cancellation? What happened?"
+        ]
+      }
+    ],
+    "PP1": [
+      {
+        "question": "Tell me about the last empty slot you had because a patient did not come.",
+        "purpose": "Understand the cost and frequency of no-shows in concrete terms.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What did you do with that hour?"
+        ]
+      }
+    ],
+    "PP4": [
+      {
+        "question": "Tell me about the last time you changed a piece of software at the clinic.",
+        "purpose": "Learn what switching costs in practice and who decides.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What made it hard?",
+          "Who was involved in the decision?"
+        ]
+      }
+    ],
+    "PP3": [
+      {
+        "question": "When a slot frees up at short notice, how do you try to fill it?",
+        "purpose": "See the current backfill process and where it fails.",
+        "bias_check": "Asks for the current process, not for interest in a feature.",
+        "follow_ups": [
+          "When did that last work?"
+        ]
+      }
+    ]
   }
 }

@@ -30,6 +30,7 @@ class HypothesesIn(BaseModel):
 class PasteIn(BaseModel):
     text: str = Field(min_length=1, max_length=500_000)
     title: str = Field(default="", max_length=120)
+    redact: bool = Field(default=False, description="Replace speaker names with neutral labels")
 
 
 class ApproveIn(BaseModel):

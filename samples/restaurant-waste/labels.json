@@ -44,5 +44,137 @@
     "H2": {"verdict": "INVALIDATED", "why": "All three reject daily manual inventory tracking; R-03 tried and abandoned an app."},
     "H3": {"verdict": "VALIDATED", "why": "R-01 and R-03 both name supplier minimums as a cause of over-buying; R-02 has no minimums. Small sample: 3 interviews."}
   },
-  "small_sample": true
+  "small_sample": true,
+  "stances_note": "Per-interview stance on each hypothesis with verbatim quotes. Interviews not listed did not discuss it.",
+  "stances": {
+    "H1": {
+      "R-01": {
+        "stance": "supports",
+        "supporting": [
+          "I'd guess we throw away 10 to 15 percent of what we buy in a slow week."
+        ],
+        "contradicting": []
+      },
+      "R-02": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "I'd say waste is under 3 percent."
+        ]
+      },
+      "R-03": {
+        "stance": "supports",
+        "supporting": [
+          "Last quarter we threw away about 2,400 euros of vegetables and pork across both sites."
+        ],
+        "contradicting": []
+      }
+    },
+    "H2": {
+      "R-01": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "After a 12-hour service the last thing I want is to count tomatoes on my phone."
+        ]
+      },
+      "R-02": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "An app would be one more thing to update, and my staff wouldn't keep it up."
+        ]
+      },
+      "R-03": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "We tried a stock-taking app last year and they stopped after two weeks."
+        ]
+      }
+    },
+    "H3": {
+      "R-01": {
+        "stance": "supports",
+        "supporting": [
+          "If I only need half of that, I still have to buy 150 euros, so I buy extra and hope."
+        ],
+        "contradicting": []
+      },
+      "R-02": {
+        "stance": "contradicts",
+        "supporting": [],
+        "contradicting": [
+          "They don't have minimums for regular customers, so I can order exactly what I need."
+        ]
+      },
+      "R-03": {
+        "stance": "supports",
+        "supporting": [
+          "For the smaller location that's more than a week's worth, so some of it goes to waste."
+        ],
+        "contradicting": []
+      }
+    }
+  },
+  "demo_questions": {
+    "H1": [
+      {
+        "question": "What did you throw away at the end of last week?",
+        "purpose": "Get a concrete, recent measure of waste.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "Roughly what did that cost?"
+        ]
+      },
+      {
+        "question": "How do you know how much food you waste in a month?",
+        "purpose": "Find out whether they measure waste at all.",
+        "bias_check": "Neutral; does not assume waste is significant.",
+        "follow_ups": [
+          "When did you last look at that number?"
+        ]
+      }
+    ],
+    "H3": [
+      {
+        "question": "Tell me about your last order from a supplier with a minimum.",
+        "purpose": "Test whether minimums actually cause over-buying.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What happened to the extra?"
+        ]
+      }
+    ],
+    "PP4": [
+      {
+        "question": "Walk me through what happens in the kitchen after the last service of the night.",
+        "purpose": "See whether there is any room for stock-taking in the real routine.",
+        "bias_check": "Asks for the routine without mentioning an app.",
+        "follow_ups": [
+          "Who does what?"
+        ]
+      }
+    ],
+    "PP3": [
+      {
+        "question": "How did you decide the quantities in your most recent order?",
+        "purpose": "Understand how ordering decisions are made today.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What information did you look at?"
+        ]
+      }
+    ],
+    "PP1": [
+      {
+        "question": "Tell me about the last time you had too much of something in stock.",
+        "purpose": "Find the causes of over-ordering.",
+        "bias_check": "Asks about a specific past event, so the answer is a fact, not a prediction.",
+        "follow_ups": [
+          "What did you do with it?"
+        ]
+      }
+    ]
+  }
 }

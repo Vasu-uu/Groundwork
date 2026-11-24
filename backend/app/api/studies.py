@@ -9,7 +9,7 @@ from __future__ import annotations
 import uuid
 from typing import Annotated
 
-from fastapi import APIRouter, BackgroundTasks, Depends, File, Response, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Depends, File, Query, Response, UploadFile
 from sqlalchemy.orm import Session
 
 from app.api.deps import get_app_settings, get_db, get_provider, get_runner
@@ -43,6 +43,7 @@ from app.services.analysis import validate_inputs
 from app.services.corpus import parse_upload
 from app.services.documents import MAX_FILE_BYTES, DocumentError
 from app.services.errors import InvalidInputError, NotFoundError
+from app.services.redaction import redact_names
 from app.services.runner import AnalysisRunner
 from app.services.samples import SampleSetInfo, list_sample_sets, load_sample_set
 from app.services.segmentation import segment_transcript
@@ -158,6 +159,13 @@ def get(study_id: str, db: DB, runner: Runner) -> StudyOut:
     return _study_out(db, svc.get_study(db, study_id), runner)
 
 
+@router.delete("/studies/{study_id}", status_code=204)
+def delete(study_id: str, db: DB) -> None:
+    """Delete the study and all its data. Cannot be undone."""
+    svc.delete_study(db, svc.get_study(db, study_id))
+    db.commit()
+
+
 @router.put("/studies/{study_id}/hypotheses", response_model=StudyOut)
 def put_hypotheses(study_id: str, body: HypothesesIn, db: DB, runner: Runner) -> StudyOut:
     row = svc.get_study(db, study_id)
@@ -167,7 +175,12 @@ def put_hypotheses(study_id: str, body: HypothesesIn, db: DB, runner: Runner) ->
 
 
 @router.post("/studies/{study_id}/interviews", response_model=UploadOut)
-async def upload(study_id: str, db: DB, files: Annotated[list[UploadFile], File()]) -> UploadOut:
+async def upload(
+    study_id: str,
+    db: DB,
+    files: Annotated[list[UploadFile], File()],
+    redact: Annotated[bool, Query(description="Replace speaker names with neutral labels")] = False,
+) -> UploadOut:
     """Upload .txt, .md, .pdf or .docx files. Bad files are reported, good ones kept."""
     row = svc.get_study(db, study_id)
     parsed: list[Transcript] = []
@@ -176,7 +189,8 @@ async def upload(study_id: str, db: DB, files: Annotated[list[UploadFile], File(
         name = f.filename or "upload.txt"
         data = await f.read(MAX_FILE_BYTES + 1)
         try:
-            parsed.append(parse_upload(name, data))
+            transcript = parse_upload(name, data)
+            parsed.append(redact_names(transcript) if redact else transcript)
         except DocumentError as exc:
             errors.append(FileError(filename=name, error=str(exc)))
     added = svc.add_transcripts(db, row, parsed) if parsed else []
@@ -190,6 +204,8 @@ def paste(study_id: str, body: PasteIn, db: DB) -> UploadOut:
     row = svc.get_study(db, study_id)
     title = body.title.strip() or "pasted interview"
     transcript = segment_transcript(body.text, source_filename=f"{title}.txt")
+    if body.redact:
+        transcript = redact_names(transcript)
     if not transcript.segments:
         raise InvalidInputError("The pasted text is empty.")
     added = svc.add_transcripts(db, row, [transcript])
